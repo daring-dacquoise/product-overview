@@ -36,7 +36,7 @@ CREATE TABLE `features` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `feature` VARCHAR(50) NOT NULL,
   `value` VARCHAR(50) NOT NULL,
-  `id_products` INTEGER NOT NULL,
+  `products_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -53,7 +53,7 @@ CREATE TABLE `styles` (
   `original_price` INTEGER NOT NULL,
   `sale_price` INTEGER NOT NULL,
   `default` TINYINT(1) NOT NULL,
-  `id_products` INTEGER NOT NULL,
+  `products_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -68,7 +68,7 @@ CREATE TABLE `photos` (
   `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
   `thumbnail` VARCHAR(50) NOT NULL,
   `url` VARCHAR(50) NOT NULL,
-  `id_styles` INTEGER NOT NULL,
+  `styles_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -95,8 +95,8 @@ DROP TABLE IF EXISTS `style_skus`;
 
 CREATE TABLE `style_skus` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `id_styles` INTEGER NOT NULL,
-  `id_skus` INTEGER NOT NULL DEFAULT NULL,
+  `styles_id` INTEGER NOT NULL,
+  `skus_id` INTEGER NOT NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -109,7 +109,7 @@ DROP TABLE IF EXISTS `related_products`;
 
 CREATE TABLE `related_products` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `id_products` INTEGER NOT NULL,
+  `products_id` INTEGER NOT NULL,
   `related_product_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
@@ -118,12 +118,12 @@ CREATE TABLE `related_products` (
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `features` ADD FOREIGN KEY (id_products) REFERENCES `products` (`id`);
-ALTER TABLE `styles` ADD FOREIGN KEY (id_products) REFERENCES `products` (`id`);
+ALTER TABLE `features` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
+ALTER TABLE `styles` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
 ALTER TABLE `photos` ADD FOREIGN KEY (id_styles) REFERENCES `styles` (`id`);
 ALTER TABLE `style_skus` ADD FOREIGN KEY (id_styles) REFERENCES `styles` (`id`);
-ALTER TABLE `style_skus` ADD FOREIGN KEY (id_skus) REFERENCES `skus` (`id`);
-ALTER TABLE `related_products` ADD FOREIGN KEY (id_products) REFERENCES `products` (`id`);
+ALTER TABLE `style_skus` ADD FOREIGN KEY (skus_id) REFERENCES `skus` (`id`);
+ALTER TABLE `related_products` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
 ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
 
 -- ---
@@ -144,15 +144,15 @@ ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `
 
 -- INSERT INTO `products` (`id`,`name`,`slogan`,`description`,`category`,`default_price`) VALUES
 -- ('','','','','','');
--- INSERT INTO `features` (`id`,`feature`,`value`,`id_products`) VALUES
+-- INSERT INTO `features` (`id`,`feature`,`value`,`products_id`) VALUES
 -- ('','','','');
--- INSERT INTO `styles` (`id`,`style_name`,`original_price`,`sale_price`,`default`,`id_products`) VALUES
+-- INSERT INTO `styles` (`id`,`style_name`,`original_price`,`sale_price`,`default`,`products_id`) VALUES
 -- ('','','','','','');
--- INSERT INTO `photos` (`id`,`thumbnail`,`url`,`id_styles`) VALUES
+-- INSERT INTO `photos` (`id`,`thumbnail`,`url`,`styles_id`) VALUES
 -- ('','','','');
 -- INSERT INTO `skus` (`id`,`quantity`,`size`) VALUES
 -- ('','','');
--- INSERT INTO `style_skus` (`id`,`id_styles`,`id_skus`) VALUES
+-- INSERT INTO `style_skus` (`id`,`styles_id`,`skus_id`) VALUES
 -- ('','','');
--- INSERT INTO `related_products` (`id`,`id_products`,`related_product_id`) VALUES
+-- INSERT INTO `related_products` (`id`,`products_id`,`related_product_id`) VALUES
 -- ('','','');
