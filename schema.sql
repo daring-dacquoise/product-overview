@@ -52,7 +52,7 @@ CREATE TABLE `styles` (
   `style_name` VARCHAR(50) NOT NULL,
   `original_price` INTEGER NOT NULL,
   `sale_price` INTEGER NOT NULL,
-  `default` TINYINT NOT NULL,
+  `default` TINYINT(1) NOT NULL,
   `id_products` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
