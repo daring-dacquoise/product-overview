@@ -11,16 +11,9 @@ let products = new Schema({
   features: [{
     feature: String,
     value: String
-  }]
-  related_products: [{
-    id: Number
-  }]
-});
-
-let styles = new Schema({
-  product_id: Number,
-  results: [{
-    id: Number,
+  }],
+  styles: [
+    style_id: Number,
     name: String,
     original_price: Number,
     sale_price: Number,
@@ -28,11 +21,19 @@ let styles = new Schema({
     photos: [{
       thumbnail_url: String,
       url: String
-    }]
-  }],
-  skus: [{
-    id: Number,
-    quantity: Number,
-    size: String
-  }]
+    }],
+    sku_ids: [Number],
+  ]
 });
+
+let relatedProducts = new Schema({
+  id: Number,
+  product_id: Number,
+  related_product_id: Number
+})
+
+let skus = new Schema({
+  id: Number,
+  quantity: Number,
+  size: String
+})
