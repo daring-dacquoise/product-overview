@@ -11,7 +11,10 @@
 -- ---
 
 DROP DATABASE if exists products;
+
 CREATE DATABASE products;
+
+USE products;
 
 DROP TABLE IF EXISTS `products`;
 
@@ -19,7 +22,7 @@ CREATE TABLE `products` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
   `slogan` VARCHAR(100) NOT NULL,
-  `description` VARCHAR(200) NOT NULL,
+  `description` VARCHAR(10000) NOT NULL,
   `category` VARCHAR(50) NOT NULL,
   `default_price` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
@@ -65,7 +68,7 @@ CREATE TABLE `styles` (
 DROP TABLE IF EXISTS `photos`;
 
 CREATE TABLE `photos` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `thumbnail` VARCHAR(50) NOT NULL,
   `url` VARCHAR(50) NOT NULL,
   `styles_id` INTEGER NOT NULL,
@@ -80,7 +83,7 @@ CREATE TABLE `photos` (
 DROP TABLE IF EXISTS `skus`;
 
 CREATE TABLE `skus` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `quantity` INTEGER NOT NULL,
   `size` VARCHAR(5) NOT NULL,
   PRIMARY KEY (`id`)
@@ -96,7 +99,7 @@ DROP TABLE IF EXISTS `style_skus`;
 CREATE TABLE `style_skus` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `styles_id` INTEGER NOT NULL,
-  `skus_id` INTEGER NOT NULL DEFAULT NULL,
+  `skus_id` INTEGER NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -120,8 +123,8 @@ CREATE TABLE `related_products` (
 
 ALTER TABLE `features` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
 ALTER TABLE `styles` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
-ALTER TABLE `photos` ADD FOREIGN KEY (id_styles) REFERENCES `styles` (`id`);
-ALTER TABLE `style_skus` ADD FOREIGN KEY (id_styles) REFERENCES `styles` (`id`);
+ALTER TABLE `photos` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
+ALTER TABLE `style_skus` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
 ALTER TABLE `style_skus` ADD FOREIGN KEY (skus_id) REFERENCES `skus` (`id`);
 ALTER TABLE `related_products` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
 ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
