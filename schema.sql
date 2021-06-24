@@ -2,31 +2,33 @@
 -- Globals
 -- ---
 
-SET SQL_MODE="";
+-- SET SQL_MODE="";
 -- SET FOREIGN_KEY_CHECKS=0;
+
+
+
+-- DROP DATABASE if exists products;
+
+-- CREATE DATABASE products;
+
+-- USE products;
 
 -- ---
 -- Table 'products'
 --
 -- ---
 
--- DROP DATABASE if exists products;
+-- DROP TABLE IF EXISTS `products`;
 
--- CREATE DATABASE products;
-
-USE products;
-
-DROP TABLE IF EXISTS `products`;
-
-CREATE TABLE `products` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) NOT NULL,
-  `slogan` VARCHAR(1000) NOT NULL,
-  `description` VARCHAR(10000) NOT NULL,
-  `category` VARCHAR(50) NOT NULL,
-  `default_price` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `products` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `name` VARCHAR(50) NOT NULL,
+--   `slogan` VARCHAR(1000) NOT NULL,
+--   `description` VARCHAR(10000) NOT NULL,
+--   `category` VARCHAR(50) NOT NULL,
+--   `default_price` INTEGER NOT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
 -- ---
 -- Table 'features'
@@ -47,7 +49,6 @@ CREATE TABLE `products` (
 -- Table 'styles'
 --
 -- ---
--- DROP TABLE IF EXISTS `skus`;
 
 -- DROP TABLE IF EXISTS `styles`;
 
@@ -91,13 +92,6 @@ CREATE TABLE `products` (
 --   `quantity` INTEGER NOT NULL,
 --   PRIMARY KEY (`id`)
 -- );
--- mysql> LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/skus.csv'
---     -> INTO TABLE skus
---     -> FIELDS TERMINATED BY ','
---     -> ENCLOSED BY '"'
---     -> LINES TERMINATED BY '\n'
---     -> IGNORE 1 ROWS
---     -> ;
 
 
 -- ---
@@ -114,13 +108,16 @@ CREATE TABLE `products` (
 --   PRIMARY KEY (`id`)
 -- );
 
--- mysql> LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/skus.csv'
---     -> INTO TABLE skus
---     -> FIELDS TERMINATED BY ','
---     -> ENCLOSED BY '"'
---     -> LINES TERMINATED BY '\n'
---     -> IGNORE 1 ROWS
---     -> ;
+
+-- mysql>
+  -- LOAD DATA INFILE filePATH'
+    --  -> INTO TABLE skus
+    --  -> FIELDS TERMINATED BY ','
+    --  -> ENCLOSED BY '"'
+    --  -> LINES TERMINATED BY '\n'
+    --  -> IGNORE 1 ROWS
+    --  -> ;
+
 -- -- ---
 -- Foreign Keys
 -- ---
