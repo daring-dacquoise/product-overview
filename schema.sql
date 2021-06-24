@@ -2,7 +2,7 @@
 -- Globals
 -- ---
 
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="";
 -- SET FOREIGN_KEY_CHECKS=0;
 
 -- ---
@@ -10,9 +10,9 @@
 --
 -- ---
 
-DROP DATABASE if exists products;
+-- DROP DATABASE if exists products;
 
-CREATE DATABASE products;
+-- CREATE DATABASE products;
 
 USE products;
 
@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
-  `slogan` VARCHAR(100) NOT NULL,
+  `slogan` VARCHAR(1000) NOT NULL,
   `description` VARCHAR(10000) NOT NULL,
   `category` VARCHAR(50) NOT NULL,
   `default_price` INTEGER NOT NULL,
@@ -33,101 +33,104 @@ CREATE TABLE `products` (
 --
 -- ---
 
-DROP TABLE IF EXISTS `features`;
+-- DROP TABLE IF EXISTS `features`;
 
-CREATE TABLE `features` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `feature` VARCHAR(50) NOT NULL,
-  `value` VARCHAR(50) NOT NULL,
-  `products_id` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `features` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `product_id` INTEGER NOT NULL,
+--   `feature` VARCHAR(50) DEFAULT NULL,
+--   `value` VARCHAR(50) DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
 -- ---
 -- Table 'styles'
 --
 -- ---
+-- DROP TABLE IF EXISTS `skus`;
 
-DROP TABLE IF EXISTS `styles`;
+-- DROP TABLE IF EXISTS `styles`;
 
-CREATE TABLE `styles` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `style_name` VARCHAR(50) NOT NULL,
-  `original_price` INTEGER NOT NULL,
-  `sale_price` INTEGER NOT NULL,
-  `default` TINYINT(1) NOT NULL,
-  `products_id` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `styles` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `product_id` INTEGER NOT NULL,
+--   `name` VARCHAR(50) NOT NULL,
+--   `sale_price` VARCHAR(10) DEFAULT NULL,
+--   `original_price` INTEGER DEFAULT NULL,
+--   `default_style` TINYINT(1),
+--   PRIMARY KEY (`id`)
+-- );
 
--- ---
--- Table 'photos'
---
--- ---
+-- -- ---
+-- -- Table 'photos'
+-- --
+-- -- ---
 
-DROP TABLE IF EXISTS `photos`;
+-- DROP TABLE IF EXISTS `photos`;
 
-CREATE TABLE `photos` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `thumbnail` VARCHAR(50) NOT NULL,
-  `url` VARCHAR(50) NOT NULL,
-  `styles_id` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `photos` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `style_id` INTEGER DEFAULT NULL,
+--   `url` VARCHAR(500) DEFAULT NULL,
+--   `thumbnail_url` VARCHAR(500) DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
 -- ---
 -- Table 'skus'
 --
 -- ---
 
-DROP TABLE IF EXISTS `skus`;
 
-CREATE TABLE `skus` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `quantity` INTEGER NOT NULL,
-  `size` VARCHAR(5) NOT NULL,
-  PRIMARY KEY (`id`)
-);
+-- DROP TABLE IF EXISTS `skus`;
 
--- ---
--- Table 'style_skus'
---
--- ---
+-- CREATE TABLE `skus` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `style_id` INTEGER NOT NULL,
+--   `size` VARCHAR(20) NOT NULL,
+--   `quantity` INTEGER NOT NULL,
+--   PRIMARY KEY (`id`)
+-- );
+-- mysql> LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/skus.csv'
+--     -> INTO TABLE skus
+--     -> FIELDS TERMINATED BY ','
+--     -> ENCLOSED BY '"'
+--     -> LINES TERMINATED BY '\n'
+--     -> IGNORE 1 ROWS
+--     -> ;
 
-DROP TABLE IF EXISTS `style_skus`;
-
-CREATE TABLE `style_skus` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `styles_id` INTEGER NOT NULL,
-  `skus_id` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
-);
 
 -- ---
 -- Table 'related_products'
 --
 -- ---
 
-DROP TABLE IF EXISTS `related_products`;
+-- DROP TABLE IF EXISTS `related_products`;
 
-CREATE TABLE `related_products` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
-  `products_id` INTEGER NOT NULL,
-  `related_product_id` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
-);
+-- CREATE TABLE `related_products` (
+--   `id` INTEGER NOT NULL AUTO_INCREMENT,
+--   `current_product_id` INTEGER DEFAULT NULL,
+--   `related_product_id` INTEGER DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- );
 
--- ---
+-- mysql> LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/skus.csv'
+--     -> INTO TABLE skus
+--     -> FIELDS TERMINATED BY ','
+--     -> ENCLOSED BY '"'
+--     -> LINES TERMINATED BY '\n'
+--     -> IGNORE 1 ROWS
+--     -> ;
+-- -- ---
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `features` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
-ALTER TABLE `styles` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
-ALTER TABLE `photos` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
-ALTER TABLE `style_skus` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
-ALTER TABLE `style_skus` ADD FOREIGN KEY (skus_id) REFERENCES `skus` (`id`);
-ALTER TABLE `related_products` ADD FOREIGN KEY (products_id) REFERENCES `products` (`id`);
-ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `features` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `styles` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `photos` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
+-- ALTER TABLE `skus` ADD FOREIGN KEY (style_id) REFERENCES `styles` (`id`);
+-- ALTER TABLE `related_products` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
 
 -- ---
 -- Table Properties
@@ -147,9 +150,9 @@ ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `
 
 -- INSERT INTO `products` (`id`,`name`,`slogan`,`description`,`category`,`default_price`) VALUES
 -- ('','','','','','');
--- INSERT INTO `features` (`id`,`feature`,`value`,`products_id`) VALUES
+-- INSERT INTO `features` (`id`,`feature`,`value`,`product_id`) VALUES
 -- ('','','','');
--- INSERT INTO `styles` (`id`,`style_name`,`original_price`,`sale_price`,`default`,`products_id`) VALUES
+-- INSERT INTO `styles` (`id`,`style_name`,`original_price`,`sale_price`,`default`,`product_id`) VALUES
 -- ('','','','','','');
 -- INSERT INTO `photos` (`id`,`thumbnail`,`url`,`styles_id`) VALUES
 -- ('','','','');
@@ -157,5 +160,5 @@ ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `
 -- ('','','');
 -- INSERT INTO `style_skus` (`id`,`styles_id`,`skus_id`) VALUES
 -- ('','','');
--- INSERT INTO `related_products` (`id`,`products_id`,`related_product_id`) VALUES
+-- INSERT INTO `related_products` (`id`,`product_id`,`related_product_id`) VALUES
 -- ('','','');
