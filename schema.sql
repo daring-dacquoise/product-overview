@@ -15,7 +15,6 @@
 
 -- ---
 -- Table 'products'
---
 -- ---
 
 -- DROP TABLE IF EXISTS `products`;
@@ -32,7 +31,6 @@
 
 -- ---
 -- Table 'features'
---
 -- ---
 
 -- DROP TABLE IF EXISTS `features`;
@@ -47,7 +45,6 @@
 
 -- ---
 -- Table 'styles'
---
 -- ---
 
 -- DROP TABLE IF EXISTS `styles`;
@@ -62,10 +59,9 @@
 --   PRIMARY KEY (`id`)
 -- );
 
--- -- ---
--- -- Table 'photos'
--- --
--- -- ---
+-- ---
+-- Table 'photos'
+-- ---
 
 -- DROP TABLE IF EXISTS `photos`;
 
@@ -79,9 +75,7 @@
 
 -- ---
 -- Table 'skus'
---
 -- ---
-
 
 -- DROP TABLE IF EXISTS `skus`;
 
@@ -96,7 +90,6 @@
 
 -- ---
 -- Table 'related_products'
---
 -- ---
 
 -- DROP TABLE IF EXISTS `related_products`;
@@ -109,16 +102,7 @@
 -- );
 
 
--- mysql>
-  -- LOAD DATA INFILE filePATH'
-    --  -> INTO TABLE skus
-    --  -> FIELDS TERMINATED BY ','
-    --  -> ENCLOSED BY '"'
-    --  -> LINES TERMINATED BY '\n'
-    --  -> IGNORE 1 ROWS
-    --  -> ;
-
--- -- ---
+-- --
 -- Foreign Keys
 -- ---
 
@@ -140,22 +124,3 @@
 -- ALTER TABLE `skus` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `style_skus` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `related_products` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ---
--- Test Data
--- ---
-
--- INSERT INTO `products` (`id`,`name`,`slogan`,`description`,`category`,`default_price`) VALUES
--- ('','','','','','');
--- INSERT INTO `features` (`id`,`feature`,`value`,`product_id`) VALUES
--- ('','','','');
--- INSERT INTO `styles` (`id`,`style_name`,`original_price`,`sale_price`,`default`,`product_id`) VALUES
--- ('','','','','','');
--- INSERT INTO `photos` (`id`,`thumbnail`,`url`,`styles_id`) VALUES
--- ('','','','');
--- INSERT INTO `skus` (`id`,`quantity`,`size`) VALUES
--- ('','','');
--- INSERT INTO `style_skus` (`id`,`styles_id`,`skus_id`) VALUES
--- ('','','');
--- INSERT INTO `related_products` (`id`,`product_id`,`related_product_id`) VALUES
--- ('','','');
