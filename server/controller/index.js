@@ -2,57 +2,64 @@ const model = require('../model');
 
 module.exports = {
 
-  getProducts: function(req, res) {
-    model.getAllProducts((err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
+  getProducts: async function(req, res) {
 
-        result.status(200).send(data);
-      }
-    })
+    try {
+
+      const results = await model.getAllProducts();
+      res.status(200).send(results);
+
+    } catch(error) {
+
+      console.log(error)
+      res.sendStatus(500);
+    }
+
   },
 
-  getProductDetail: function(req, res) {
+  getProductDetail: async function(req, res) {
 
     const productId = req.params.product_id;
 
-    model.getProduct(productId, (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
+    try {
 
-        result.status(200).send(data);
-      }
-    })
+      const results = await model.getProduct(productId);
+      res.status(200).send(results);
+
+    } catch(error) {
+
+      console.log(error)
+      res.sendStatus(500);
+    }
   },
 
-  getProductStyles: function(req, res) {
+  getProductStyles: async function(req, res) {
 
     const productId = req.params.product_id;
 
-    model.getStyles(productId, (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
+    try {
 
-        result.status(200).send(data);
-      }
-    })
+      const results = await model.getStyles(productId);
+      res.status(200).send(results);
+
+    } catch(error) {
+      console.log(error)
+      res.sendStatus(500);
+    }
   },
 
-  getRelated: function(req, res) {
+  getRelated: async function(req, res) {
 
     const productId = req.params.product_id;
 
-    model.getRelatedItems(productId, (err, data) => {
-      if (err) {
-        res.status(500).send(err);
-      } else {
+    try {
 
-        result.status(200).send(data);
-      }
-    })
-  }
+      const results = await model.getRelatedItems(productId);
+      res.status(200).send(results);
+
+    } catch(error) {
+      console.log(error)
+      res.sendStatus(500);
+    }
 
 }
