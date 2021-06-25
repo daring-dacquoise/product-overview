@@ -3,7 +3,7 @@ const model = require('../model');
 module.exports = {
 
   getProducts: function(req, res) {
-    ,model.getAllProducts((err, data) => {
+    model.getAllProducts((err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -17,7 +17,7 @@ module.exports = {
 
     const productId = req.params.product_id;
 
-    ,model.getProduct(productId, (err, data) => {
+    model.getProduct(productId, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -31,7 +31,7 @@ module.exports = {
 
     const productId = req.params.product_id;
 
-    ,model.getStyles(productId, (err, data) => {
+    model.getStyles(productId, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
@@ -45,7 +45,7 @@ module.exports = {
 
     const productId = req.params.product_id;
 
-    ,model.getRelatedItems(productId, (err, data) => {
+    model.getRelatedItems(productId, (err, data) => {
       if (err) {
         res.status(500).send(err);
       } else {
