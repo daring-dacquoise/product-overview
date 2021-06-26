@@ -19,7 +19,7 @@ module.exports = {
 
   getProductDetail: async function(req, res) {
 
-    const productId = req.params.product_id;
+    const productId = parseInt(req.params.product_id);
 
     try {
 
@@ -35,7 +35,7 @@ module.exports = {
 
   getProductStyles: async function(req, res) {
 
-    const productId = req.params.product_id;
+    const productId = parseInt(req.params.product_id);
 
     try {
 
