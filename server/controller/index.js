@@ -3,10 +3,12 @@ const model = require('../model');
 module.exports = {
 
   getProducts: async function(req, res) {
+    let page = req.query.page;
+    let count = req.query.count;
 
     try {
 
-      const results = await model.getAllProducts();
+      const results = await model.getAllProducts(page, count);
       res.status(200).send(results);
 
     } catch(error) {
@@ -54,25 +56,20 @@ module.exports = {
   //transform the id to a integer in the controller, not model
   //TO DO: validate the id, make sure parseInt does not return undefined
     const productId = parseInt(req.params.product_id);
-    console.log(productId)
+    // console.log(productId)
 
     try {
-      console.log('get related:')
+      // console.log('get related:')
       const results = await model.getRelatedItems(productId);
-      console.log('returning:')
-      console.log(results)
+      // console.log('returning:')
+      // console.log(results)
       res.status(200).send(results);
-      console.log(results)
+      // console.log(results)
     } catch(error) {
-      console.log('model error here:')
-      console.log(error)
+      // console.log('model error here:')
+      // console.log(error)
       res.sendStatus(500);
     }
-  },
-
-  test: async function(req, res) {
-    const results = await model.getTest();
-    res.send(results);
   }
 
 }
