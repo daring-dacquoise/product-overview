@@ -49,8 +49,11 @@ module.exports = {
   },
 
   getRelated: async function(req, res) {
-
-    const productId = req.params.product_id;
+  //id in mysql is a integer
+  //id here is  a string
+  //transform the id to a integer in the controller, not model
+  //TO DO: validate the id, make sure parseInt does not return undefined
+    const productId = parseInt(req.params.product_id);
     console.log(productId)
 
     try {
