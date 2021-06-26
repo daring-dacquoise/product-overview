@@ -1,7 +1,6 @@
 const mysql = require('mysql');
 
-
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'password',
@@ -9,9 +8,10 @@ const connection = mysql.createConnection({
 })
 
 module.exports.connectDb = function(cb) {
-  connection.connect((err) => {
+  pool.getConnection((err) => {
     if (err) {
       console.error(err);
+      connection.release();
       cb(err);
     } else {
       console.log('yay connected to mysql')
@@ -29,7 +29,7 @@ module.exports.queryDb = function(queryString) {
   //if query doesnt work, cb tells me it doesn tit, reject the promise
 
   return new Promise((resolve, reject) => {
-    connection.query(queryString, (err, results) => {
+    pool.query(queryString, (err, results) => {
       if (err) {
         reject(err);
       } else {
