@@ -47,14 +47,64 @@ module.exports = {
 
 //get styles for a product
   getStyles: async function(productId) {
-    let queryStr = `select * from styles where id=${productId}`;
 
-    const response = await db.queryDb(queryStr);
-    console.log(response)
+    let queryStr = `SELECT *, p.id as photo_id, skus.id as sku_id FROM styles s LEFT JOIN photos p ON s.id = p.style_id LEFT JOIN skus ON s.id = skus.style_id WHERE s.product_id =${productId}`;
+
+    const rows = await db.queryDb(queryStr);
+    // console.log(rows)
+
+    if (rows.length === 0) {
+      throw new Error(`Product not found: ${productId}`);
+    };
+
+    let styleRows = {};
+
+    rows.forEach((row) => {
+      let styleId = row.style_id;
+      if (styleRows[styleId] === undefined) {
+        styleRows[styleId] = [];
+      }
+      styleRows[styleId].push(row);
+    });
 
 
+    const styles = Object.keys(styleRows).map((styleId) => {
+      const rows = styleRows[styleId];
 
-    return response;
+      let uniquePhotos = {};
+
+      rows.forEach((row) => {
+        if (uniquePhotos[row.photo_id] !== undefined) {
+          return;
+        }
+        uniquePhotos[row.photo_id] = {thumbnail: row.thumbnail_url, url: row.url};
+      });
+
+      let uniqueSkus = {};
+
+      rows.forEach((row) => {
+        if (uniqueSkus[row.sku_id] !== undefined) {
+          return;
+        }
+        uniqueSkus[row.sku_id] = {quantity: row.quantity, size: row.size};
+      })
+
+      return {
+        style_id: styleId,
+        name: rows[0].name,
+        original_price: rows[0].original_price,
+        sale_price: rows[0].sale_price,
+        default: rows[0].default,
+        photos: Object.values(uniquePhotos),
+        skus: uniqueSkus
+      };
+    });
+
+    return {
+      product_id: productId.toString(),
+      results: styles
+    }
+
   },
 
 //get related items for a product
