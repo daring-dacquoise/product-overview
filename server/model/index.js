@@ -21,14 +21,16 @@ module.exports = {
 
     const rows = await db.queryDb(queryStr);
 
-    //transformation:
-    ///array of objects
+    if (rows.length === 0) {
+      throw new Error(`Product not found: ${productId}`);
+    };
 
-    //edge case: if there is no product or no features?
-
-    const featuresArr = rows.map((row) => {
-      return {feature: row.feature, value: row.value};
-    });
+    const featuresArr = rows.reduce((accum, row) => {
+      if (row.feature === null || row.value === null) {
+        return accum;
+      }
+      return accum.concat([{feature: row.feature, value: row.value}]);
+    }, []);
 
     const product = {
         id: productId,
