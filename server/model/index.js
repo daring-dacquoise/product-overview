@@ -9,7 +9,10 @@ module.exports = {
     // row_count = 20;
     // select * from table limit (offset, row_count);
     let offset = (page -1) * count;
-
+    console.log('page:')
+    console.log(page)
+    console.log('count:')
+    console.log(count)
 
     let queryStr = `select * from products limit ${count} offset ${offset}`;
 
@@ -22,7 +25,7 @@ module.exports = {
   getProduct: async function(productId) {
     let queryStr = `select * from products where id=${productId}`;
 
-    const response = await db.query(queryStr);
+    const response = await db.queryDb(queryStr);
 
     return response;
   },
@@ -31,7 +34,7 @@ module.exports = {
   getStyles: async function(productId) {
     let queryStr = `select * from styles where id=${productId}`;
 
-    const response = await db.query(queryStr);
+    const response = await db.queryDb(queryStr);
 
     return response;
   },
