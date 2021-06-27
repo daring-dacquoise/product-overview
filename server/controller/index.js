@@ -26,6 +26,7 @@ module.exports = {
     try {
 
       const results = await model.getProduct(productId);
+      console.log(results)
       res.status(200).send(results);
 
     } catch(error) {

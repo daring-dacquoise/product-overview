@@ -4,15 +4,8 @@ module.exports = {
 //get products
 //page = 1, count = 5
   getAllProducts: async function(page = 1, count = 5) {
-    // select * from products  LIMIT 10 OFFSET 0
-    //offset = (page - 1)*20 ;
-    // row_count = 20;
-    // select * from table limit (offset, row_count);
+
     let offset = (page -1) * count;
-    console.log('page:')
-    console.log(page)
-    console.log('count:')
-    console.log(count)
 
     let queryStr = `select * from products limit ${count} offset ${offset}`;
 
@@ -21,13 +14,33 @@ module.exports = {
     return response;
   },
 
+  // SELECT * FROM products p LEFT JOIN features f ON p.id = f.product_id WHERE p.id = 3
 //get a product
   getProduct: async function(productId) {
-    let queryStr = `select * from products where id=${productId}`;
+    let queryStr = `SELECT * from products p LEFT JOIN features f ON p.id = f.product_id WHERE p.id=${productId}`;
 
-    const response = await db.queryDb(queryStr);
+    const rows = await db.queryDb(queryStr);
 
-    return response;
+    //transformation:
+    ///array of objects
+
+    //edge case: if there is no product or no features?
+
+    const featuresArr = rows.map((row) => {
+      return {feature: row.feature, value: row.value};
+    });
+
+    const product = {
+        id: productId,
+        name: rows[0].name,
+        slogan: rows[0].slogan,
+        description: rows[0].description,
+        category: rows[0].slogan,
+        default_price: rows[0].default_price,
+        features: featuresArr
+      };
+
+    return product;
   },
 
 //get styles for a product
@@ -35,6 +48,9 @@ module.exports = {
     let queryStr = `select * from styles where id=${productId}`;
 
     const response = await db.queryDb(queryStr);
+    console.log(response)
+
+
 
     return response;
   },
