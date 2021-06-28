@@ -1,8 +1,7 @@
 const db = require('../../database');
 
 module.exports = {
-//get products
-//page = 1, count = 5
+
   getAllProducts: async function(page = 1, count = 5) {
 
     let offset = (page -1) * count;
@@ -14,8 +13,6 @@ module.exports = {
     return response;
   },
 
-  // SELECT * FROM products p LEFT JOIN features f ON p.id = f.product_id WHERE p.id = 3
-//get a product
   getProduct: async function(productId) {
     let queryStr = `SELECT * from products p LEFT JOIN features f ON p.id = f.product_id WHERE p.id=${productId}`;
 
@@ -45,13 +42,11 @@ module.exports = {
     return product;
   },
 
-//get styles for a product
   getStyles: async function(productId) {
 
     let queryStr = `SELECT *, p.id as photo_id, skus.id as sku_id FROM styles s LEFT JOIN photos p ON s.id = p.style_id LEFT JOIN skus ON s.id = skus.style_id WHERE s.product_id =${productId}`;
 
     const rows = await db.queryDb(queryStr);
-    // console.log(rows)
 
     if (rows.length === 0) {
       throw new Error(`Product not found: ${productId}`);
@@ -87,7 +82,7 @@ module.exports = {
           return;
         }
         uniqueSkus[row.sku_id] = {quantity: row.quantity, size: row.size};
-      })
+      });
 
       return {
         style_id: styleId,
@@ -105,15 +100,15 @@ module.exports = {
       results: styles
     }
 
+    //before: we were looking through all the row data packets to find photos and skus for a given style
+    //now: we start by organizing the rows per style, so when we look for skus and photos, we are only looking through the rows belonging to the style
+    //we are now looking through a fraction of the rows
   },
 
-//get related items for a product
   getRelatedItems: async function(productId) {
 
     let queryStr = `select * from related_products where current_product_id=${productId} or related_product_id=${productId}`;
-    // console.log(queryStr)
     const response = await db.queryDb(queryStr);
-    // console.log(response)
 
     const results = response.map((row) => {
       return row.current_product_id === productId
@@ -124,4 +119,10 @@ module.exports = {
 
     return results;
   }
+
+  //saw the query was slow, -1164.663 ms
+  //went to mysql server, (38 rows in set (0.93 sec) checked both conditions of the query independently, the current product id & related product id
+  //found the culprit - the related product 35 rows in set (0.83 sec)
+  //added a index for related product and reduced the speed 35 rows in set (0.01 sec)
+
 };
