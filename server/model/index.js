@@ -5,17 +5,15 @@ module.exports = {
   getAllProducts: async function(page = 1, count = 5) {
 
     let offset = (page -1) * count;
-
     let queryStr = `select * from products limit ${count} offset ${offset}`;
-
     const response = await db.queryDb(queryStr);
 
     return response;
   },
 
   getProduct: async function(productId) {
-    let queryStr = `SELECT * from products p LEFT JOIN features f ON p.id = f.product_id WHERE p.id=${productId}`;
 
+    let queryStr = `SELECT * from products p LEFT JOIN features f ON p.id = f.product_id WHERE p.id=${productId}`;
     const rows = await db.queryDb(queryStr);
 
     if (rows.length === 0) {
@@ -45,7 +43,6 @@ module.exports = {
   getStyles: async function(productId) {
 
     let queryStr = `SELECT *, p.id as photo_id, skus.id as sku_id FROM styles s LEFT JOIN photos p ON s.id = p.style_id LEFT JOIN skus ON s.id = skus.style_id WHERE s.product_id =${productId}`;
-
     const rows = await db.queryDb(queryStr);
 
     if (rows.length === 0) {
@@ -99,10 +96,6 @@ module.exports = {
       product_id: productId.toString(),
       results: styles
     }
-
-    //before: we were looking through all the row data packets to find photos and skus for a given style
-    //now: we start by organizing the rows per style, so when we look for skus and photos, we are only looking through the rows belonging to the style
-    //we are now looking through a fraction of the rows
   },
 
   getRelatedItems: async function(productId) {
@@ -119,10 +112,5 @@ module.exports = {
 
     return results;
   }
-
-  //saw the query was slow, -1164.663 ms
-  //went to mysql server, (38 rows in set (0.93 sec) checked both conditions of the query independently, the current product id & related product id
-  //found the culprit - the related product 35 rows in set (0.83 sec)
-  //added a index for related product and reduced the speed 35 rows in set (0.01 sec)
 
 };

@@ -57,4 +57,4 @@ async function importCsvData2MySQL(filename) {
   } catch (error) {
     console.log(error);
   }
-}
+};
