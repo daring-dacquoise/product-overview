@@ -6,7 +6,11 @@
   "scripts": {
     "server-start": "nodemon server/index.js",
     "seed:schema": "mysql -u root -p < schema.sql",
-    "test": "jest"
+    "test": "jest",
+    "k6-getAll": "k6 run k6_tests/getAllProducts.js",
+    "k6-getOne": "k6 run k6_tests/getOneProduct.js",
+    "k6-getStyles": "k6 run k6_tests/getStyles.js",
+    "k6-getRelated": "k6 run k6_tests/getRelated.js"
   },
   "repository": {
     "type": "git",
