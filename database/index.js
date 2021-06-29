@@ -12,7 +12,6 @@ module.exports.connectDb = function(cb) {
   pool.getConnection((err) => {
     if (err) {
       console.error(err);
-      connection.release();
       cb(err);
     } else {
       console.log('yay connected to mysql')

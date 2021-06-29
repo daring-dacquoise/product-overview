@@ -4,7 +4,7 @@
   "description": "",
   "main": "1.js",
   "scripts": {
-    "server-start": "nodemon server/index.js",
+    "server-start": "node server/index.js",
     "seed:schema": "mysql -u root -p < schema.sql",
     "test": "jest",
     "k6-getAll": "k6 run k6_tests/getAllProducts.js",
