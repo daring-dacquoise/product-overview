@@ -14,10 +14,8 @@ export let options = {
   }
 };
 
-//init code
-
 export default function () {
-  //vu code
+
   for (let id= 1; id <= 1000011; id++) {
 
     const res = http.get(`http://localhost:3000/products/${id}`);

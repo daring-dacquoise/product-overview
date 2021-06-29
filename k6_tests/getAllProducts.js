@@ -14,11 +14,9 @@ export let options = {
   }
 };
 
-//init code
-
 export default function () {
-  //vu code
-  const res =  http.get(`http://localhost:3000/products/`);
+
+  const res =  http.get(`http://localhost:3000/products`);
 
   check(res, {
     'response status is 200': (res) => res.status === 200,
@@ -28,3 +26,4 @@ export default function () {
   sleep(1);
 
 }
+//k6 run --summary-trend-stats="min,avg,med,p(99),p(99.9),max,count" --summary-time-unit=ms k6_tests/getAllProducts.js
