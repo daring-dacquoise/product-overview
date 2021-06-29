@@ -21,12 +21,6 @@ module.exports.connectDb = function(cb) {
 };
 
 module.exports.queryDb = function(queryString) {
-  //for all my dbs, i want to return a promise based function
-
-  //resolve, reject
-  //when i cbb the db, i want to return a promise
-
-  //if query doesnt work, cb tells me it doesn tit, reject the promise
 
   return new Promise((resolve, reject) => {
     pool.query(queryString, (err, results) => {
