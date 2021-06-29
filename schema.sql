@@ -131,19 +131,19 @@ LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/photos.cs
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `features` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
-ALTER TABLE `styles` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
-ALTER TABLE `photos` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
-ALTER TABLE `skus` ADD FOREIGN KEY (style_id) REFERENCES `styles` (`id`);
-ALTER TABLE `related_products` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
-ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `features` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `styles` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `photos` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
+-- ALTER TABLE `skus` ADD FOREIGN KEY (style_id) REFERENCES `styles` (`id`);
+-- ALTER TABLE `related_products` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
+-- ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
 
 -- --
 -- Add Index
 -- ---
 
-CREATE INDEX related_product_id_index ON related_products (related_product_id);
-CREATE INDEX features_product_id_index ON features (product_id);
-CREATE INDEX styles_product_id_index ON styles (product_id);
-CREATE INDEX photos_style_id_index ON photos (style_id);
-CREATE INDEX skus_style_id_index ON skus (style_id);
+-- CREATE INDEX related_product_id_index ON related_products (related_product_id);
+-- CREATE INDEX features_product_id_index ON features (product_id);
+-- CREATE INDEX styles_product_id_index ON styles (product_id);
+-- CREATE INDEX photos_style_id_index ON photos (style_id);
+-- CREATE INDEX skus_style_id_index ON skus (style_id);
