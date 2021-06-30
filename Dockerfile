@@ -8,8 +8,6 @@ COPY . /app
 
 RUN npm install
 
-RUN npm run server-start
-
 EXPOSE 3000
 
 CMD ["npm", "run", "server-start"]
