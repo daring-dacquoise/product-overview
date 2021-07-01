@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
-  host: 'my-app-db',
-  user: 'iris',
-  port: '3306',
+  host: 'localhost',
+  user: 'root',
+  port: 3306,
   password: 'password',
   database: 'products',
 })
