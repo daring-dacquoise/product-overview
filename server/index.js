@@ -13,14 +13,16 @@ app.use(router);
 
 //only bring server up if connected to db
 
-// db.connectDb((err) => {
-//   if (!err) {
-//     app.listen(PORT, () => {
-//       console.log(`server is listening on port: ${PORT}`);
-//     });
-//   }
-// });
-
-app.listen(PORT, () => {
-  console.log(`server is listening on port: ${PORT}`);
+setTimeout(() => {
+console.log("trying db connection");
+db.connectDb((err) => {
+  if (!err) {
+    app.listen(PORT, () => {
+      console.log(`hi server is listening on port: ${PORT}`);
+    });
+  }
 });
+}, 5000);
+// app.listen(PORT, () => {
+//   console.log(`server is listening on port: ${PORT}`);
+// });

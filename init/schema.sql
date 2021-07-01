@@ -12,7 +12,7 @@ CREATE DATABASE products;
 USE products;
 
 
-DROP TABLE IF EXISTS `products`;
+-- DROP TABLE IF EXISTS `products`;
 
 CREATE TABLE `products` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -25,7 +25,7 @@ CREATE TABLE `products` (
 );
 
 
-DROP TABLE IF EXISTS `features`;
+-- DROP TABLE IF EXISTS `features`;
 
 CREATE TABLE `features` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE `features` (
 );
 
 
-DROP TABLE IF EXISTS `styles`;
+-- DROP TABLE IF EXISTS `styles`;
 
 CREATE TABLE `styles` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -48,7 +48,7 @@ CREATE TABLE `styles` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `photos`;
+-- DROP TABLE IF EXISTS `photos`;
 
 CREATE TABLE `photos` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ CREATE TABLE `photos` (
 );
 
 
-DROP TABLE IF EXISTS `skus`;
+-- DROP TABLE IF EXISTS `skus`;
 
 CREATE TABLE `skus` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -70,7 +70,7 @@ CREATE TABLE `skus` (
 );
 
 
-DROP TABLE IF EXISTS `related_products`;
+-- DROP TABLE IF EXISTS `related_products`;
 
 CREATE TABLE `related_products` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -80,52 +80,52 @@ CREATE TABLE `related_products` (
 );
 
 
-LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/related.csv'
-  INTO TABLE related_products
-  FIELDS TERMINATED BY ','
-  ENCLOSED BY '"'
-  LINES TERMINATED BY '\n'
-  IGNORE 1 ROWS
-  ;
+-- LOAD DATA INFILE '/csv/related.csv'
+--   INTO TABLE related_products
+--   FIELDS TERMINATED BY ','
+--   ENCLOSED BY '"'
+--   LINES TERMINATED BY '\n'
+--   IGNORE 1 ROWS
+--   ;
 
-LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/products.csv'
-  INTO TABLE products
-  FIELDS TERMINATED BY ','
-  ENCLOSED BY '"'
-  LINES TERMINATED BY '\n'
-  IGNORE 1 ROWS
-  ;
+-- LOAD DATA INFILE '/csv/products.csv'
+--   INTO TABLE products
+--   FIELDS TERMINATED BY ','
+--   ENCLOSED BY '"'
+--   LINES TERMINATED BY '\n'
+--   IGNORE 1 ROWS
+--   ;
 
-LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/styles.csv'
-  INTO TABLE styles
-  FIELDS TERMINATED BY ','
-  ENCLOSED BY '"'
-  LINES TERMINATED BY '\n'
-  IGNORE 1 ROWS
-  ;
+-- LOAD DATA INFILE '/csv/styles.csv'
+--   INTO TABLE styles
+--   FIELDS TERMINATED BY ','
+--   ENCLOSED BY '"'
+--   LINES TERMINATED BY '\n'
+--   IGNORE 1 ROWS
+--   ;
 
-LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/skus.csv'
-  INTO TABLE skus
-  FIELDS TERMINATED BY ','
-  ENCLOSED BY '"'
-  LINES TERMINATED BY '\n'
-  IGNORE 1 ROWS
-  ;
+-- LOAD DATA INFILE '/csv/skus.csv'
+--   INTO TABLE skus
+--   FIELDS TERMINATED BY ','
+--   ENCLOSED BY '"'
+--   LINES TERMINATED BY '\n'
+--   IGNORE 1 ROWS
+--   ;
 
-LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/features.csv'
-  INTO TABLE features
-  FIELDS TERMINATED BY ','
-  ENCLOSED BY '"'
-  LINES TERMINATED BY '\n'
-  IGNORE 1 ROWS
-  ;
+-- LOAD DATA INFILE '/csv/features.csv'
+--   INTO TABLE features
+--   FIELDS TERMINATED BY ','
+--   ENCLOSED BY '"'
+--   LINES TERMINATED BY '\n'
+--   IGNORE 1 ROWS
+--   ;
 
-LOAD DATA INFILE '/Users/devbook/HackReactor/SDC/product-overview/data/photos.csv'
-  INTO TABLE photos
-  FIELDS TERMINATED BY ','
-  LINES TERMINATED BY '\n'
-  IGNORE 1 ROWS
-  ;
+-- LOAD DATA INFILE '/csv/photos.csv'
+--   INTO TABLE photos
+--   FIELDS TERMINATED BY ','
+--   LINES TERMINATED BY '\n'
+--   IGNORE 1 ROWS
+--   ;
 
 -- --
 -- Foreign Keys

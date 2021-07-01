@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mysql1:
+    image: mysql/mysql-server:8.0
+    container_name: my-app-db
+    # restart: always
+    environment:
+        MYSQL_DB: products
+        MYSQL_USER: iris
+        MYSQL_PASSWORD: ponytails
+    ports:
+        - "3306:3306"
+    volumes:
+        - ./mysql:/var/lib/mysql
+        - ./csv:/csv
+        - ./init:/docker-entrypoint-initdb.d
+    expose:
+        - "3306"
+    command: --secure-file-priv=""
+  myapp:
+      build:
+          context: .
+          dockerfile: Dockerfile
+      ports:
+          - "80:80"
+      expose:
+          - "80"
+      depends_on:
+        - mysql1
