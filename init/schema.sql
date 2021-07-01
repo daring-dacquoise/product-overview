@@ -80,13 +80,13 @@ CREATE TABLE `related_products` (
 );
 
 
--- LOAD DATA INFILE '/csv/related.csv'
---   INTO TABLE related_products
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/related.csv'
+  INTO TABLE related_products
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
 -- LOAD DATA INFILE '/csv/products.csv'
 --   INTO TABLE products
