@@ -5,6 +5,6 @@ sampleData.js
 data
 SDC.pem
 docker.sh
-.env
+# .env
 mysql/
 csv/

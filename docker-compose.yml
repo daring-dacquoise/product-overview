@@ -10,23 +10,20 @@ services:
         MYSQL_USER: root
         MYSQL_PASSWORD: password
     ports:
-        - "3306:3306"
+         - 3306:3306
     volumes:
         - ./mysql:/var/lib/mysql
         - ./csv:/csv
         - ./init:/docker-entrypoint-initdb.d
-    expose:
-        - "3306"
     command: --secure-file-priv=""
+
   myapp:
       build:
           context: .
           dockerfile: Dockerfile
       ports:
-          - "3000:3000"
-      expose:
-          - "3000"
+          - 3000:3000
       depends_on:
         - mysql1
       links:
-        - "mysql1:0.0.0.0"
+        - mysql1:db
