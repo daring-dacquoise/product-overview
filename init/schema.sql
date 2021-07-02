@@ -82,13 +82,13 @@ CREATE TABLE `related_products` (
 );
 
 
--- LOAD DATA INFILE '/csv/related.csv'
---   INTO TABLE related_products
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/related.csv'
+  INTO TABLE related_products
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
 LOAD DATA INFILE '/csv/product.csv'
   INTO TABLE products
@@ -98,21 +98,21 @@ LOAD DATA INFILE '/csv/product.csv'
   IGNORE 1 ROWS
   ;
 
--- LOAD DATA INFILE '/csv/styles.csv'
---   INTO TABLE styles
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/styles.csv'
+  INTO TABLE styles
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
--- LOAD DATA INFILE '/csv/skus.csv'
---   INTO TABLE skus
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/skus.csv'
+  INTO TABLE skus
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
 LOAD DATA INFILE '/csv/features.csv'
   INTO TABLE features
@@ -122,12 +122,12 @@ LOAD DATA INFILE '/csv/features.csv'
   IGNORE 1 ROWS
   ;
 
--- LOAD DATA INFILE '/csv/photos.csv'
---   INTO TABLE photos
---   FIELDS TERMINATED BY ','
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/photos.csv'
+  INTO TABLE photos
+  FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
 -- Foreign Keys
 

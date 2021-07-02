@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
-  host: 'mysql1',
-  user: 'iris',
+  host: process.env.DATABASE_HOST || 'localhost',
+  user: process.env.DATABASE_USER || 'root',
   port: 3306,
-  password: 'test',
+  password: process.env.DATABASE_PASSWORD || 'password',
   database: 'products',
   insecureAuth: true,
 })

@@ -21,6 +21,10 @@ services:
       - docker_net
 
   myapp:
+      environment:
+        DATABASE_HOST: mysql1
+        DATABASE_USER: iris
+        DATABASE_PASSWORD: test
       build:
           context: .
           dockerfile: Dockerfile
