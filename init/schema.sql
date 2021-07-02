@@ -88,48 +88,46 @@ LOAD DATA INFILE '/csv/related.csv'
   IGNORE 1 ROWS
   ;
 
--- LOAD DATA INFILE '/csv/products.csv'
---   INTO TABLE products
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/product.csv'
+  INTO TABLE products
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
--- LOAD DATA INFILE '/csv/styles.csv'
---   INTO TABLE styles
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/styles.csv'
+  INTO TABLE styles
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
--- LOAD DATA INFILE '/csv/skus.csv'
---   INTO TABLE skus
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/skus.csv'
+  INTO TABLE skus
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
--- LOAD DATA INFILE '/csv/features.csv'
---   INTO TABLE features
---   FIELDS TERMINATED BY ','
---   ENCLOSED BY '"'
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/features.csv'
+  INTO TABLE features
+  FIELDS TERMINATED BY ','
+  ENCLOSED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
--- LOAD DATA INFILE '/csv/photos.csv'
---   INTO TABLE photos
---   FIELDS TERMINATED BY ','
---   LINES TERMINATED BY '\n'
---   IGNORE 1 ROWS
---   ;
+LOAD DATA INFILE '/csv/photos.csv'
+  INTO TABLE photos
+  FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
+  IGNORE 1 ROWS
+  ;
 
--- --
 -- Foreign Keys
--- ---
 
 -- ALTER TABLE `features` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
 -- ALTER TABLE `styles` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
@@ -139,7 +137,7 @@ LOAD DATA INFILE '/csv/related.csv'
 -- ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);
 
 -- --
--- Add Index
+-- -- Add Index
 -- ---
 
 -- CREATE INDEX related_product_id_index ON related_products (related_product_id);
