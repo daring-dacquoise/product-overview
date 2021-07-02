@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 
 const pool = mysql.createPool({
-  host: 'db',
-  user: 'root',
+  host: 'mysql1',
+  user: 'iris',
   port: 3306,
-  password: 'password',
+  password: 'test',
   database: 'products',
+  insecureAuth: true,
 })
 
 module.exports.connectDb = function(cb) {

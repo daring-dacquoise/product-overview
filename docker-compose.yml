@@ -6,9 +6,10 @@ services:
     container_name: db
     # restart: always
     environment:
-        MYSQL_DB: products
-        MYSQL_USER: root
-        MYSQL_PASSWORD: password
+        MYSQL_DATABASE: products
+        MYSQL_USER: iris
+        MYSQL_PASSWORD: test
+        MYSQL_ROOT_PASSWORD: password
     ports:
          - 3306:3306
     volumes:
@@ -16,6 +17,8 @@ services:
         - ./csv:/csv
         - ./init:/docker-entrypoint-initdb.d
     command: --secure-file-priv=""
+    networks:
+      - docker_net
 
   myapp:
       build:
@@ -25,5 +28,9 @@ services:
           - 3000:3000
       depends_on:
         - mysql1
-      links:
-        - mysql1:db
+      networks:
+        - docker_net
+
+networks:
+  docker_net:
+    driver: bridge
