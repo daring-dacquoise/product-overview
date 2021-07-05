@@ -22,5 +22,6 @@
 **/secrets.dev.yaml
 **/values.dev.yaml
 README.md
-SDC.pem
+*.SDC.pem
 *.csv
+*.server/testing/loader_test

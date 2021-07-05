@@ -8,3 +8,5 @@ docker.sh
 # .env
 mysql/
 csv/
+server/testing/loader_test
+

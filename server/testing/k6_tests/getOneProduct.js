@@ -18,7 +18,7 @@ export default function () {
 
   for (let id= 1; id <= 1000011; id++) {
 
-    const res = http.get(`http://localhost:80/products/${id}`);
+    const res = http.get(`http://localhost:3000/products/${id}`);
 
     check(res, {
       'response status is 200': (res) => res.status === 200,

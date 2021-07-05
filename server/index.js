@@ -1,7 +1,5 @@
-// require('dotenv').config();
-
 const express = require('express');
-const compression = require('compression');
+// const compression = require('compression');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const morgan = require('morgan');
@@ -13,7 +11,7 @@ app.use(morgan('dev'));
 
 app.use(express.json());
 
-app.use(compression());
+// app.use(compression());
 
 app.use(express.static(path.join(__dirname, 'testing', 'loader_test')));
 
