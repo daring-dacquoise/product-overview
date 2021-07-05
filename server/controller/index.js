@@ -13,7 +13,7 @@ module.exports = {
 
     } catch(error) {
 
-      console.log(error)
+      //console.log(error)
       res.sendStatus(500);
     }
 
@@ -26,12 +26,12 @@ module.exports = {
     try {
 
       const results = await model.getProduct(productId);
-      console.log(results)
+      //console.log(results)
       res.status(200).send(results);
 
     } catch(error) {
 
-      console.log(error)
+      //console.log(error)
       res.sendStatus(500);
     }
   },
@@ -46,7 +46,7 @@ module.exports = {
       res.status(200).send(results);
 
     } catch(error) {
-      console.log(error)
+      //console.log(error)
       res.sendStatus(500);
     }
   },

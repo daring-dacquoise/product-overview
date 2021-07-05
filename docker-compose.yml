@@ -1,6 +1,14 @@
 version: '3.9'
 
 services:
+  nginx:
+    image: nginx:1.16.0-alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    networks:
+      - docker_net
   mysql1:
     image: mysql/mysql-server:8.0
     container_name: db
@@ -22,6 +30,7 @@ services:
 
   myapp:
       environment:
+        PORT: 3000
         DATABASE_HOST: mysql1
         DATABASE_USER: iris
         DATABASE_PASSWORD: test
@@ -34,7 +43,38 @@ services:
         - mysql1
       networks:
         - docker_net
+  myapp2:
+      environment:
+        PORT: 3001
+        DATABASE_HOST: mysql1
+        DATABASE_USER: iris
+        DATABASE_PASSWORD: test
+      build:
+          context: .
+          dockerfile: Dockerfile
+      ports:
+          - 3001:3001
+      depends_on:
+        - mysql1
+      networks:
+        - docker_net
+  myapp3:
+      environment:
+        PORT: 3002
+        DATABASE_HOST: mysql1
+        DATABASE_USER: iris
+        DATABASE_PASSWORD: test
+      build:
+          context: .
+          dockerfile: Dockerfile
+      ports:
+          - 3002:3002
+      depends_on:
+        - mysql1
+      networks:
+        - docker_net
 
 networks:
   docker_net:
     driver: bridge
+    #used docker_net network for mysql and app server which lets them talk to each other
