@@ -133,7 +133,7 @@ LOAD DATA INFILE '/csv/photos.csv'
 
 ALTER TABLE `features` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
 ALTER TABLE `styles` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
-ALTER TABLE `photos` ADD FOREIGN KEY (styles_id) REFERENCES `styles` (`id`);
+ALTER TABLE `photos` ADD FOREIGN KEY (style_id) REFERENCES `styles` (`id`);
 ALTER TABLE `skus` ADD FOREIGN KEY (style_id) REFERENCES `styles` (`id`);
 ALTER TABLE `related_products` ADD FOREIGN KEY (product_id) REFERENCES `products` (`id`);
 ALTER TABLE `related_products` ADD FOREIGN KEY (related_product_id) REFERENCES `products` (`id`);

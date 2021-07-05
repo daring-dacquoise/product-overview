@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/daring-dacquoise/product-overview#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fast-csv": "^4.3.6",
