@@ -16,7 +16,7 @@ export let options = {
 
 export default function () {
 
-  const res =  http.get(`http://localhost:3000/products`);
+  const res =  http.get(`http://localhost:80/products`);
 
   check(res, {
     'response status is 200': (res) => res.status === 200,
