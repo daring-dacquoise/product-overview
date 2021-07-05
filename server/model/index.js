@@ -41,14 +41,14 @@ module.exports = {
   },
 
   getStyles: async function(productId) {
-    console.time('sql')
+
     let queryStr = `SELECT *, p.id as photo_id, skus.id as sku_id FROM styles s LEFT JOIN photos p ON s.id = p.style_id LEFT JOIN skus ON s.id = skus.style_id WHERE s.product_id =${productId}`;
     const rows = await db.queryDb(queryStr);
-    console.timeEnd('sql')
+
     if (rows.length === 0) {
       throw new Error(`Product not found: ${productId}`);
     };
-    console.time('rows per styles')
+
     let styleRows = {};
 
     rows.forEach((row) => {
@@ -58,9 +58,8 @@ module.exports = {
       }
       styleRows[styleId].push(row);
     });
-    console.timeEnd('rows per styles')
 
-    console.time('photos and skus')
+
     const styles = Object.keys(styleRows).map((styleId) => {
       const rows = styleRows[styleId];
 
@@ -93,8 +92,6 @@ module.exports = {
         skus: uniqueSkus
       };
     });
-
-    console.timeEnd('photos and skus')
 
     return {
       product_id: productId.toString(),
