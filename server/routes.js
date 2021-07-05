@@ -6,7 +6,7 @@ router.get('/products/:product_id', products.getProductDetail);
 router.get('/products/:product_id/styles', products.getProductStyles);
 router.get('/products/:product_id/related', products.getRelated);
 router.get('/hello', (req, res) => {
-  res.send('hi')
+  res.send('hihihihihi');
 })
 
 module.exports = router;
